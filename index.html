@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<title>Canvas</title>
+<style>
+body {
+  margin: 0;
+  background: gray;
+}
+
+canvas {
+  background: white;
+}
+</style>
+<canvas id="canvas" width="640" height="480"></canvas>
+<script>
+var canvas = document.getElementById("canvas"),
+    context = canvas.getContext("2d"),
+    w = 10,
+    h = 10,
+    x = 0,
+    y = 0,
+    dx = 5,
+    dy = 5;
+
+function animate(time) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    context.fillRect(x, y, w, h);
+
+    if (x < 0 || canvas.width - w < x) dx *= -1;
+    if (y < 0 || canvas.height - h < y) dy *= -1;
+
+    x += dx;
+    y += dy;
+
+    requestAnimationFrame(animate);
+}
+requestAnimationFrame(animate);
+</script>
